@@ -131,8 +131,8 @@ Item {
     }
 
     ShortcutHandler {
-        name: "Hide window"
-        text: "Sets skip Taskbar, Switcher & Pager on the active window"
+        name: "Minimize to tray"
+        text: "Minimize window to tray (sets skip Taskbar, Switcher & Pager)"
         sequence: "Alt+S"
         onActivated: {
             const window = Workspace.activeWindow
