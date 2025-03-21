@@ -28,14 +28,15 @@ TrayIcon::TrayIcon(QObject *parent) : QObject(parent) {
             emit requestShowHide(m_windowId);
         }
     });
-    connect(this, &TrayIcon::toolTipTextChanged, this, [this]() { trayIcon->setToolTip(toolTipText()); });
-    connect(this, &TrayIcon::iconChanged, this, [this]() { trayIcon->setIcon(icon()); });
+    connect(this, &TrayIcon::toolTipTextChanged, this, [this]() { trayIcon->setToolTip(m_toolTipText); });
+    connect(this, &TrayIcon::iconChanged, this, [this]() { trayIcon->setIcon(m_icon); });
     trayIcon->setContextMenu(menu);
     trayIcon->show();
 }
 
 void TrayIcon::setIcon(const QIcon newIcon) {
-    if (trayIcon->icon().cacheKey() != newIcon.cacheKey()) {
+    if (m_icon.cacheKey() != newIcon.cacheKey()) {
+        m_icon = newIcon;
         emit iconChanged();
     }
 }

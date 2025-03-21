@@ -29,7 +29,8 @@ class TrayIcon : public QObject {
 
   private:
     QSystemTrayIcon *trayIcon;
-    QIcon icon() const { return trayIcon->icon(); }
+    QIcon m_icon;
+    QIcon icon() const { return m_icon; }
     void setIcon(QIcon icon);
     QUuid m_windowId;
     QUuid windowId() const { return m_windowId; }
