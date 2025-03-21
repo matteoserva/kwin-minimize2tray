@@ -1,0 +1,9 @@
+build/
+
+# plasmoid
+*.plasmoid
+
+playground
+.cache/
+.vscode
+.env
