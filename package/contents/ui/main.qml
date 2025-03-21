@@ -62,6 +62,7 @@ Item {
         });
         trayItem.requestShowHide.connect(toggleShowHide)
         trayItem.requestClose.connect(closeWindow)
+        trayItem.requestUnpin.connect(unpinIcon)
         trayIcons[windowId] = trayItem;
     }
 
@@ -116,11 +117,12 @@ Item {
         window.closeWindow()
     }
 
-    function restoreWindow(windowId) {
+    function unpinIcon(windowId) {
         const window = getWindow(windowId)
         if (!window) return
         setMinimize(false, window)
         setSkip(false, window)
+        removeTrayIcon(window)
         Workspace.activeWindow = window
     }
 

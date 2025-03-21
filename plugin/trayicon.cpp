@@ -15,6 +15,10 @@ TrayIcon::TrayIcon(QObject *parent) : QObject(parent) {
     connect(showAction, &QAction::triggered, this, [this]() { emit requestShowHide(m_windowId); });
     menu->addAction(showAction);
 
+    QAction *unpinAction = new QAction("Unpin", menu);
+    connect(unpinAction, &QAction::triggered, this, [this]() { emit requestUnpin(m_windowId); });
+    menu->addAction(unpinAction);
+
     QAction *quitAction = new QAction("Quit", menu);
     connect(quitAction, &QAction::triggered, this, [this]() { emit requestClose(m_windowId); });
     menu->addAction(quitAction);

@@ -25,6 +25,7 @@ class TrayIcon : public QObject {
     void requestRemoveTrayIcon();
     void requestShowHide(const QUuid windowId);
     void requestClose(const QUuid windowId);
+    void requestUnpin(const QUuid windowId);
 
   private:
     QSystemTrayIcon *trayIcon;
