@@ -4,12 +4,12 @@ if [ -d "build" ]; then
     rm -rf build
 fi
 
-# Install widget for current user
-cmake -B build/ -S . -DCMAKE_INSTALL_PREFIX=~/.local
-cmake --build build/
-cmake --install build/
+# Install script for current user
+cmake -B build/script -S . -DBUILD_PLUGIN=OFF -DCMAKE_INSTALL_PREFIX=~/.local
+cmake --build build/script
+cmake --install build/script
 
-# Install plugin system-wide (required for qml modules)
-# cmake -B build/plugin -S . -DBUILD_PLUGIN=ON -DCMAKE_INSTALL_PREFIX=/usr
-# cmake --build build/plugin
-# sudo cmake --install build/plugin
+# Install plugin system-wide
+cmake -B build/plugin -S . -DINSTALL_SCRIPT=OFF -DCMAKE_INSTALL_PREFIX=/usr
+cmake --build build/plugin
+sudo cmake --install build/plugin
