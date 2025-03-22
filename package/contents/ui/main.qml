@@ -101,6 +101,7 @@ Item {
             setSkip(true, window)
         }
         window.minimized = !window.minimized
+        if (!window.minimized) Workspace.activeWindow = window
     }
 
     function getWindow(windowId) {
