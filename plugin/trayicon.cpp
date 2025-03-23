@@ -174,12 +174,9 @@ void TrayIcon::initializeTrayIcon() {
     connect(unpinAction, &QAction::triggered, this, [this]() { emit requestUnpin(m_windowId); });
     m_menu->addAction(unpinAction);
 
-    QAction *quitAction = new QAction("Quit", m_menu);
-    connect(quitAction, &QAction::triggered, this, [this]() { emit requestClose(m_windowId); });
-    m_menu->addAction(quitAction);
-
     connect(trayIcon, &KStatusNotifierItem::quitRequested, this, [this]() {
         emit requestClose(m_windowId);
+        // wants to kill KWin otherwise
         trayIcon->abortQuit();
     });
 
