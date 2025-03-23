@@ -44,6 +44,10 @@ By default the shortcut is set to `Alt+S`, to change it:
 2. From the list on the left select *KWin*
 3. Search for "Minimize window to tray" and change it to whatever you prefer
 
+## Acknowledgements
+
+[Unity LauncherAPI](https://wiki.ubuntu.com/Unity/LauncherAPI) implementation is a simplified version of [KDE/plasma-desktop/applets/taskmanager/plugin/smartlaunchers](https://github.com/KDE/plasma-desktop/tree/e3ba92b113d8a4e2d47a589835e9d867059dc2b9/applets/taskmanager/plugin/smartlaunchers)
+
 ## Support the development
 
 If you like what I do consider donating/sponsoring this and [my other open source work](https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers)

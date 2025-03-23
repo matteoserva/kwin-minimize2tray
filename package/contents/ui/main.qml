@@ -55,10 +55,19 @@ Item {
         if (windowId in trayIcons) {
             return;
         }
+        let launcherUrl = window.desktopFileName
+        if (!launcherUrl.startsWith("application://")) {
+            launcherUrl = "application://" + launcherUrl
+        }
+        if (!launcherUrl.endsWith(".desktop")) {
+            launcherUrl = launcherUrl + ".desktop"
+        }
+
         const trayItem = trayIconComponent.createObject(root, {
             "icon": window.icon,
             "windowId": windowId,
-            "toolTipText": formattedWindowInfo(window)
+            "toolTipText": formattedWindowInfo(window),
+            "launcherUrl": launcherUrl
         });
         trayItem.requestShowHide.connect(toggleShowHide)
         trayItem.requestClose.connect(closeWindow)

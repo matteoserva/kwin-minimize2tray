@@ -3,8 +3,10 @@
 
 #pragma once
 
+#include <QDBusMessage>
 #include <QObject>
 #include <QSystemTrayIcon>
+#include <QUrl>
 #include <QUuid>
 
 class TrayIcon : public QObject {
@@ -12,9 +14,24 @@ class TrayIcon : public QObject {
     Q_PROPERTY(QIcon icon READ icon WRITE setIcon NOTIFY iconChanged);
     Q_PROPERTY(QUuid windowId READ windowId WRITE setWindowId NOTIFY windowIdChanged);
     Q_PROPERTY(QString toolTipText READ toolTipText WRITE setToolTipText NOTIFY toolTipTextChanged)
+    Q_PROPERTY(QString launcherUrl READ launcherUrl WRITE setLauncherUrl NOTIFY launcherUrlChanged)
+
+    Q_PROPERTY(int count READ count NOTIFY countChanged)
+    Q_PROPERTY(bool countVisible READ countVisible NOTIFY countVisibleChanged)
+    Q_PROPERTY(int progress READ progress NOTIFY progressChanged)
+    Q_PROPERTY(bool progressVisible READ progressVisible NOTIFY progressVisibleChanged)
+    Q_PROPERTY(bool urgent READ urgent NOTIFY urgentChanged)
 
   public:
     explicit TrayIcon(QObject *parent = nullptr);
+
+    QString launcherUrl() const;
+    void setLauncherUrl(const QString &launcherUrl);
+    int count() const;
+    bool countVisible() const;
+    int progress() const;
+    bool progressVisible() const;
+    bool urgent() const;
 
     ~TrayIcon() { delete trayIcon; }
 
@@ -27,6 +44,16 @@ class TrayIcon : public QObject {
     void requestClose(const QUuid windowId);
     void requestUnpin(const QUuid windowId);
 
+    void launcherUrlChanged(const QString &launcherUrl);
+    void countChanged(int count);
+    void countVisibleChanged(bool countVisible);
+    void progressChanged(int progress);
+    void progressVisibleChanged(bool progressVisible);
+    void urgentChanged(bool urgent);
+
+  public slots:
+    void launcherAPIUpdate(const QString &uri, const QMap<QString, QVariant> &properties);
+
   private:
     QSystemTrayIcon *trayIcon;
     QIcon m_icon;
@@ -38,6 +65,19 @@ class TrayIcon : public QObject {
     QString m_toolTipText;
     QString toolTipText() const { return m_toolTipText; }
     void setToolTipText(QString toolTipText);
+
+    void setCount(int count);
+    void setCountVisible(bool countVisible);
+    void setProgress(int progress);
+    void setProgressVisible(bool progressVisible);
+    void setUrgent(bool urgent);
+
+    QString m_launcherUrl;
+    int m_count = 0;
+    bool m_countVisible = false;
+    int m_progress = 0;
+    bool m_progressVisible = false;
+    bool m_urgent = false;
 };
 
 #endif
