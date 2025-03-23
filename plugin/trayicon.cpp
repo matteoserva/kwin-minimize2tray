@@ -168,10 +168,12 @@ void TrayIcon::initializeTrayIcon() {
 
     QAction *showAction = new QAction("Show/Hide", m_menu);
     connect(showAction, &QAction::triggered, this, [this]() { emit requestShowHide(m_windowId); });
+    showAction->setIcon(QIcon::fromTheme(QStringLiteral("view-visible-symbolic")));
     m_menu->addAction(showAction);
 
     QAction *unpinAction = new QAction("Unpin", m_menu);
     connect(unpinAction, &QAction::triggered, this, [this]() { emit requestUnpin(m_windowId); });
+    unpinAction->setIcon(QIcon::fromTheme(QStringLiteral("window-unpin-symbolic")));
     m_menu->addAction(unpinAction);
 
     connect(trayIcon, &KStatusNotifierItem::quitRequested, this, [this]() {
