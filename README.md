@@ -53,7 +53,7 @@ Enable/disable
 
 1. *Minimize to tray* from *System Settings* > *Window Management* > *KWin Scripts*
 
-By default the shortcut is set to `Alt+S`, to change it:
+By default the shortcut is set to `Meta+Alt+PgDown`, to change it:
 
 1. *System Settings* > *Keyboard* > *Shortcuts*
 2. From the list on the left select *KWin*
