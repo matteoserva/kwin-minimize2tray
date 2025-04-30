@@ -168,7 +168,7 @@ Item {
     ShortcutHandler {
         name: "Minimize to tray"
         text: "Minimize window to tray (sets skip Taskbar, Switcher & Pager)"
-        sequence: "Alt+S"
+        sequence: "Meta+Alt+PgDown"
         onActivated: {
             const window = Workspace.activeWindow
             if (!isValidWindow(window)) return
