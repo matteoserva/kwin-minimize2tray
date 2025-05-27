@@ -6,6 +6,12 @@ Hide windows to the system tray, similar to [KDocker](https://github.com/user-no
 
 ![preview](screenshots/preview.png)
 
+> [!IMPORTANT]
+> Some applications like Google Chrome or Chromium/Electron based may run in Xwayland mode and have issues hiding from taskbar or minimizing on startup, enabling native Wayland support for them can help. Usually setting an environment variable or command-line argument with KDE's `kmenuedit` is needed, refer to [Wayland - ArchWiki](https://wiki.archlinux.org/title/Wayland#GUI_libraries) or search "linux APP_NAME enable wayland support".
+>
+> To verify if an application is running on Xwayland instead of Wayland use the KWin Debug Console.
+> ![wayland](screenshots/wayland.png)
+
 ## Features
 
 - Wayland support (X11 hasn't been tested, let me know if it works)
