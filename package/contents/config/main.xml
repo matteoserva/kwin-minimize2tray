@@ -25,5 +25,8 @@
     <entry name="startMinimized" type="Bool">
       <default>true</default>
     </entry>
+    <entry name="startMinimized" type="Bool">
+      <default>true</default>
+    </entry>
   </group>
 </kcfg>

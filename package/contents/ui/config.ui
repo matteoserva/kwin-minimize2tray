@@ -112,7 +112,7 @@
        <item row="6" column="0" colspan="2">
         <widget class="QLabel" name="label_startMinimized">
          <property name="text">
-          <string>Restore to current desktop</string>
+          <string>Start minimized</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -120,7 +120,24 @@
         </widget>
        </item>
        <item row="6" column="2">
-        <widget class="QCheckBox" name="kcfg_startMinimized"">
+        <widget class="QCheckBox" name="kcfg_startMinimized">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="2">
+        <widget class="QLabel" name="label_showIfDifferentDesktop">
+         <property name="text">
+          <string>Show app if toggled from different desktop</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="2">
+        <widget class="QCheckBox" name="kcfg_showIfDifferentDesktop">
          <property name="text">
           <string/>
          </property>

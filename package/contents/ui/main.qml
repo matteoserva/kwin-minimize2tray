@@ -10,6 +10,7 @@ Item {
     property bool hideOnMinimize: KWin.readConfig("hideOnMinimize", false)
     property bool restoreToCurrentDesktop: KWin.readConfig("restoreToCurrentDesktop", true)
     property bool startMinimized: KWin.readConfig("startMinimized", true)
+    property bool showIfDifferentDesktop: KWin.readConfig("showIfDifferentDesktop", true)
     property var trayIcons: new Object()
     readonly property Component trayIconComponent: TrayIcon {}
 
