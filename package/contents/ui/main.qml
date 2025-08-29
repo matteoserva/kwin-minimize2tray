@@ -96,7 +96,7 @@ Item {
             "xdgName": window.desktopFileName,
             "countUseDot": countUseDot
         });
-        trayItem.requestShowHide.connect(toggleShowHide)
+        trayItem.requestShowHide.connect(trayRequestShowHide)
         trayItem.requestClose.connect(closeWindow)
         trayItem.requestUnpin.connect(unpinIcon)
         trayIcons[windowId] = trayItem;
@@ -109,6 +109,22 @@ Item {
         }
         trayIcons[windowId].destroy();
         delete trayIcons[windowId];
+    }
+
+    function trayRequestShowHide(windowId) {
+        const window = getWindow(windowId)
+        if (!window) return
+
+        const isOnCurrentDesktop = window.desktops.includes(Workspace.currentDesktop) || window.onAllDesktops;
+        if(showIfDifferentDesktop && !window.minimized && window.desktops.length == 1 && !isOnCurrentDesktop)
+        {
+            window.desktops[0] = Workspace.currentDesktop;
+            Workspace.activeWindow = window
+        }
+        else
+        {
+            toggleShowHide(windowId)
+        }
     }
 
     function setMinimize(minimize, window) {
@@ -144,7 +160,8 @@ Item {
     }
 
     function setActiveWindow(window) {
-        if(restoreToCurrentDesktop && window.desktops.length == 1 && !(Workspace.currentDesktop in window.desktops))
+        const isOnCurrentDesktop = window.desktops.includes(Workspace.currentDesktop) || window.onAllDesktops;
+        if(restoreToCurrentDesktop && window.desktops.length == 1 && !isOnCurrentDesktop)
         {
             window.desktops[0] = Workspace.currentDesktop
         }
