@@ -8,6 +8,7 @@ Item {
     property var hideByDefaultClass: commaSeparate(KWin.readConfig("hideByDefaultClass", ""))
     property bool countUseDot: KWin.readConfig("countUseDot", false)
     property bool hideOnMinimize: KWin.readConfig("hideOnMinimize", false)
+    property bool restoreToCurrentDesktop: KWin.readConfig("restoreToCurrentDesktop", true)
     property var trayIcons: new Object()
     readonly property Component trayIconComponent: TrayIcon {}
 
@@ -134,7 +135,18 @@ Item {
         } else {
             setSkip(false, window)
         }
-        if (!window.minimized) Workspace.activeWindow = window
+        if (!window.minimized)
+        {
+            setActiveWindow(window)
+        }
+    }
+
+    function setActiveWindow(window) {
+        if(restoreToCurrentDesktop && window.desktops.length == 1 && !(Workspace.currentDesktop in window.desktops))
+        {
+            window.desktops[0] = Workspace.currentDesktop
+        }
+        Workspace.activeWindow = window
     }
 
     function onMinimizeChanged(window) {
@@ -166,7 +178,7 @@ Item {
         setMinimize(false, window)
         setSkip(false, window)
         removeTrayIcon(window)
-        Workspace.activeWindow = window
+        setActiveWindow(window)
     }
 
     function updateToolTip(window) {

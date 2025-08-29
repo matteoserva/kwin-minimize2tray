@@ -92,6 +92,23 @@
          </property>
         </widget>
        </item>
+       <item row="5" column="0" colspan="2">
+        <widget class="QLabel" name="label_restoreToCurrentDesktop">
+         <property name="text">
+          <string>Restore to current desktop</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QCheckBox" name="kcfg_restoreToCurrentDesktop">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
