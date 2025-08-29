@@ -1,5 +1,12 @@
 # KWin Minimize2Tray
 
+## Fork of https://github.com/luisbocanegra/kwin-minimize2tray
+** additional features **
+- Start minimized or just add to tray
+- hide on minimize
+- restore window to the current desktop
+- Show/hide moves the window to current desktop if visible in another desktop
+
 **This is work in progress, don't expect feature parity with other implementations right away**
 
 Hide windows to the system tray, similar to [KDocker](https://github.com/user-none/KDocker) but in the form of a KWin Script that works on Wayland.
