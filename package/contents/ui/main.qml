@@ -9,6 +9,7 @@ Item {
     property bool countUseDot: KWin.readConfig("countUseDot", false)
     property bool hideOnMinimize: KWin.readConfig("hideOnMinimize", false)
     property bool restoreToCurrentDesktop: KWin.readConfig("restoreToCurrentDesktop", true)
+    property bool startMinimized: KWin.readConfig("startMinimized", true)
     property var trayIcons: new Object()
     readonly property Component trayIconComponent: TrayIcon {}
 
@@ -219,7 +220,10 @@ Item {
         if (!isValidWindow(window)) return
         if (hideByDefaultClass.includes(window.resourceName) || hideByDefaultClass.includes(window.resourceClass)) {
             root.addTrayIcon(window)
-            toggleShowHide(window.internalId)
+            if(startMinimized)
+            {
+                toggleShowHide(window.internalId)
+            }
         }
     }
 
