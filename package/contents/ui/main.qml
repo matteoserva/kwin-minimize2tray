@@ -49,6 +49,9 @@ Item {
         window.demandsAttentionChanged.connect(() => {
             updateDemandsAttention(window)
         })
+        window.minimizedChanged.connect(() => {
+            onMinimizeChanged(window)
+        })
         window.iconChanged.connect(() => {
             updateWindowIcon(window)
         })
@@ -133,6 +136,16 @@ Item {
         if (!window.minimized) Workspace.activeWindow = window
     }
 
+    function onMinimizeChanged(window) {
+        if (!(window.internalId in trayIcons)) {
+            return;
+        }
+        if (window.minimized) {
+            setSkip(true, window);
+        }
+
+    }
+
     function getWindow(windowId) {
         for (let window of Workspace.windows) {
             if (window.internalId === windowId) {
@@ -184,16 +197,17 @@ Item {
                 window = window.transientFor
             }
             if (!isValidWindow(window)) return
-            toggleShowHide(window.internalId)
+
             root.addTrayIcon(window)
+            toggleShowHide(window.internalId)
         }
     }
 
     function setupAutoHide(window) {
         if (!isValidWindow(window)) return
         if (hideByDefaultClass.includes(window.resourceName) || hideByDefaultClass.includes(window.resourceClass)) {
-            toggleShowHide(window.internalId)
             root.addTrayIcon(window)
+            toggleShowHide(window.internalId)
         }
     }
 
