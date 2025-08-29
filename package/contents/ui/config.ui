@@ -24,7 +24,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>Start minimized (comma separated class names):</string>
+          <string>Managed windows (comma separated class names):</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
