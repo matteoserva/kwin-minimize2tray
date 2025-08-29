@@ -7,6 +7,7 @@ Item {
     property bool debugEnabled: KWin.readConfig("debugEnabled", false)
     property var hideByDefaultClass: commaSeparate(KWin.readConfig("hideByDefaultClass", ""))
     property bool countUseDot: KWin.readConfig("countUseDot", false)
+    property bool hideOnMinimize: KWin.readConfig("hideOnMinimize", true)
     property var trayIcons: new Object()
     readonly property Component trayIconComponent: TrayIcon {}
 
@@ -127,12 +128,12 @@ Item {
         const window = getWindow(windowId)
         if (!window) return
 
-        if (window.minimized) {
-            setSkip(false, window)
-        } else {
-            setSkip(true, window)
-        }
         window.minimized = !window.minimized
+        if (window.minimized) {
+            setSkip(true, window)
+        } else {
+            setSkip(false, window)
+        }
         if (!window.minimized) Workspace.activeWindow = window
     }
 
@@ -140,7 +141,7 @@ Item {
         if (!(window.internalId in trayIcons)) {
             return;
         }
-        if (window.minimized) {
+        if (window.minimized && hideOnMinimize) {
             setSkip(true, window);
         }
 
