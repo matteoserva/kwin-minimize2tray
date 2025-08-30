@@ -17,7 +17,7 @@
       <default>false</default>
     </entry>
     <entry name="hideOnMinimize" type="Bool">
-      <default>true</default>
+      <default>false</default>
     </entry>
   </group>
 </kcfg>

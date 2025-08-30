@@ -7,7 +7,7 @@ Item {
     property bool debugEnabled: KWin.readConfig("debugEnabled", false)
     property var hideByDefaultClass: commaSeparate(KWin.readConfig("hideByDefaultClass", ""))
     property bool countUseDot: KWin.readConfig("countUseDot", false)
-    property bool hideOnMinimize: KWin.readConfig("hideOnMinimize", true)
+    property bool hideOnMinimize: KWin.readConfig("hideOnMinimize", false)
     property var trayIcons: new Object()
     readonly property Component trayIconComponent: TrayIcon {}
 
