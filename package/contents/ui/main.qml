@@ -129,12 +129,13 @@ Item {
         if (!window) return
 
         window.minimized = !window.minimized
+        if (!window.minimized) Workspace.activeWindow = window
+
         if (window.minimized) {
             setSkip(true, window)
         } else {
             setSkip(false, window)
         }
-        if (!window.minimized) Workspace.activeWindow = window
     }
 
     function onMinimizeChanged(window) {
@@ -198,16 +199,16 @@ Item {
             }
             if (!isValidWindow(window)) return
 
-            root.addTrayIcon(window)
             toggleShowHide(window.internalId)
+            root.addTrayIcon(window)
         }
     }
 
     function setupAutoHide(window) {
         if (!isValidWindow(window)) return
         if (hideByDefaultClass.includes(window.resourceName) || hideByDefaultClass.includes(window.resourceClass)) {
-            root.addTrayIcon(window)
             toggleShowHide(window.internalId)
+            root.addTrayIcon(window)
         }
     }
 
