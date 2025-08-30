@@ -144,7 +144,6 @@ Item {
         if (window.minimized && hideOnMinimize) {
             setSkip(true, window);
         }
-
     }
 
     function getWindow(windowId) {
